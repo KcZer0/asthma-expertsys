@@ -13,10 +13,9 @@ import {
   Center,
   Stack,
   Link,
+  Img,
 } from '@chakra-ui/react';
-import Image from 'next/image';
 import React from 'react';
-import logoAsthma from '../assets/logo.png';
 
 export default function Form() {
   const pertanyaan = [
@@ -64,11 +63,21 @@ export default function Form() {
   ];
 
   return (
-    <Flex w="100%" minHeight="100vh">
-      <Box w="50%" bgColor="LightBlue">
-        <Image src={logoAsthma} width="2000" height="2000" />
-      </Box>
-      <Center width="50%">
+    <Flex
+      w="100%"
+      minH="100vh"
+      position="relative"
+      bgImg="/assets/asthma.png"
+      bgSize="cover"
+      justifyContent="right"
+    >
+      <Center
+        position="relative"
+        bgColor="white"
+        margin="40px"
+        borderRadius="30px"
+        boxShadow="9px 10px 5px 0px rgba(0,0,0,0.75)"
+      >
         <VStack as="form" alignItems="flex-end" my="2rem" mx="2rem">
           {pertanyaan.map((pert, index) => (
             <FormControl as="fieldset" key={index}>
@@ -76,7 +85,12 @@ export default function Form() {
               <RadioGroup defaultValue="u">
                 <Stack spacing="24px" direction={{ base: 'column', xl: 'row' }}>
                   {jawaban.map((jaw, index) => (
-                    <Radio key={index} value={jaw.value}>
+                    <Radio
+                      key={index}
+                      value={jaw.value}
+                      colorScheme="teal"
+                      borderColor="black"
+                    >
                       {jaw.label}
                     </Radio>
                   ))}
@@ -86,9 +100,7 @@ export default function Form() {
           ))}
           <Flex>
             <Spacer></Spacer>
-            <Link href="/result">
-              <Button>Submit</Button>
-            </Link>
+            <Button colorScheme="teal">Submit</Button>
           </Flex>
         </VStack>
       </Center>
