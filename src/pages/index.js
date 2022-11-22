@@ -1,6 +1,4 @@
-import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { Button, Flex, Center, Box, VStack, Link, Img } from '@chakra-ui/react';
+import { Button, Center, Box, VStack, Link, Img } from '@chakra-ui/react';
 
 export default function Home() {
   return (
