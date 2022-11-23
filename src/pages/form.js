@@ -11,7 +11,8 @@ import {
   Radio,
 } from '@chakra-ui/react';
 import React from 'react';
-import { pertanyaan, jawaban } from '@/data/questions';
+
+import symptoms from '@/data/symptoms';
 
 export default function Form() {
   return (
@@ -31,19 +32,19 @@ export default function Form() {
         boxShadow="9px 10px 5px 0px rgba(0,0,0,0.75)"
       >
         <VStack as="form" alignItems="flex-end" my="2rem" mx="2rem">
-          {pertanyaan.map((pert, index) => (
-            <FormControl as="fieldset" key={index}>
-              <FormLabel as="legend">{pert}</FormLabel>
-              <RadioGroup defaultValue="u">
+          {symptoms.map((symptom, sidx) => (
+            <FormControl as="fieldset" key={symptom.name}>
+              <FormLabel as="legend">{symptom.desc}</FormLabel>
+              <RadioGroup name={symptom.name} defaultValue="0">
                 <Stack spacing="24px" direction={{ base: 'column', xl: 'row' }}>
-                  {jawaban.map((jaw, index) => (
+                  {symptom.options.map((opt, oidx) => (
                     <Radio
-                      key={index}
-                      value={jaw.value}
+                      key={'s' + sidx + 'o' + oidx}
+                      value={`${oidx}`}
                       colorScheme="teal"
                       borderColor="black"
                     >
-                      {jaw.label}
+                      {opt}
                     </Radio>
                   ))}
                 </Stack>

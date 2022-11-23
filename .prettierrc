@@ -17,6 +17,12 @@
       "options": {
         "printWidth": 100
       }
+    },
+    {
+      "files": ["**/data/**/*.js"],
+      "options": {
+        "printWidth": 50
+      }
     }
   ]
 }
