@@ -72,7 +72,7 @@ export default function Form() {
     <Flex
       w="100%"
       minH="100vh"
-      bgImg="/assets/asthma.png"
+      bgImg="/images/bg.png"
       bgSize="cover"
       justifyContent={{ base: 'center', md: 'end' }}
     >

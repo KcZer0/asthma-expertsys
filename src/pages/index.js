@@ -8,9 +8,9 @@ export default function Home() {
     <Center height="100vh" bgColor="#dbbdad">
       <VStack spacing={'1rem'}>
         <Box width="20rem" height="20rem" position="relative">
-          <Image src="/assets/logo.png" alt="logo" fill />
+          <Image src="/images/logo.png" alt="Logo" fill />
         </Box>
-        <NextLink href="/form" legacyBehavior passHref>
+        <NextLink href="/eval" legacyBehavior passHref>
           <Button
             as={Link}
             colorScheme="teal"
