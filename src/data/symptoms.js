@@ -2,12 +2,12 @@ const symptoms = {
   s1mucus: {
     desc: 'Excessive Mucus Production',
     options: ['No', 'Yes'],
-    cf: 0.32,
+    cf: [0.32, 0.32, 0.32],
   },
   s2chest: {
     desc: 'Chest tightening',
     options: ['No', 'Yes'],
-    cf: 0.32,
+    cf: [0.32, 0.32, 0.32],
   },
   s3cough: {
     desc: 'Coughing (in a day)',
@@ -17,7 +17,7 @@ const symptoms = {
       'Few times',
       'Continuously/Very often',
     ],
-    cf: 0.237,
+    cf: [0.15, 0.15, 0.41],
   },
   s4breathe: {
     desc: 'Trouble Breathing',
@@ -27,7 +27,7 @@ const symptoms = {
       'Yes, but no whistling',
       'Yes, with whistling sound',
     ],
-    cf: 0.5,
+    cf: [0.5, 0.5, 0.5],
   },
   s5attack: {
     desc: 'Attacks in a week',
@@ -37,7 +37,7 @@ const symptoms = {
       '3-5 days',
       'Almost every day',
     ],
-    cf: 0.5,
+    cf: [0.5, 0.41, 0.5],
   },
   s6night: {
     desc: 'Night time attacks (in a month)',
@@ -47,7 +47,7 @@ const symptoms = {
       '3-4 times',
       '>4 times',
     ],
-    cf: 0.5,
+    cf: [0.5, 0.5, 0.5],
   },
   s7sleep: {
     desc: 'Disturbance during sleep',
@@ -56,7 +56,7 @@ const symptoms = {
       'Minor',
       'Trouble sleeping',
     ],
-    cf: 0.5,
+    cf: [0.5, 0.5, 0.5],
   },
   s8activity: {
     desc: 'Disturbance during activity',
@@ -65,7 +65,7 @@ const symptoms = {
       'Minor',
       'Limited Activity',
     ],
-    cf: 0.5,
+    cf: [0.5, 0.5, 0.5],
   },
 };
 export default symptoms;
