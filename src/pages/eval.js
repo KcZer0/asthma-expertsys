@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import symptoms from '@/data/symptoms';
-import asthmaType from '@/utils/inference';
+import asthmaType from '@/lib/inference';
 
 const ButtonRadio = ({ active, children, ...p }) => (
   <Button
