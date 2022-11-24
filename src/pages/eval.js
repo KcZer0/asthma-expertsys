@@ -126,6 +126,7 @@ export default function Form() {
       setResult({
         text: `You don't have asthma`,
         type: undefined,
+        description: undefined,
         desc: 'Thank you for using this app',
         prob: null,
       });
@@ -133,6 +134,7 @@ export default function Form() {
       setResult({
         text: `You have asthma of type: `,
         type: result.info.name,
+        description: result.info.description,
         desc: result.info.desc,
         prob: result.prob,
       });
@@ -175,6 +177,8 @@ export default function Form() {
             <br />
             {result.type ?? undefined}
           </Heading>
+          <Text mt="1rem">{result.description ?? undefined}</Text>
+          <br></br>
           <Text>{result.desc}</Text>
           {Array.isArray(result.prob) ? (
             <TableContainer>
