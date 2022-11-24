@@ -1,14 +1,14 @@
 const asthma = [
   {
-    name: 'Intermittent (P1)',
+    name: 'Intermittent (T1)',
     desc: '',
   },
   {
-    name: 'Mild Persistent (P2)',
+    name: 'Mild Persistent (T2)',
     desc: '',
   },
   {
-    name: 'Moderate Persistent (P3)',
+    name: 'Moderate Persistent (T3)',
     desc: '',
   },
 ];

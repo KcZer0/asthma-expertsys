@@ -10,9 +10,23 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from '@chakra-ui/react';
+
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import LinkButton from '@/components/LinkButton';
 
+import asthma from '@/data/asthma-desc';
 import symptoms from '@/data/symptoms';
 import asthmaType from '@/lib/inference';
 
@@ -21,6 +35,8 @@ const ButtonRadio = ({ active, children, ...p }) => (
     borderColor="blackAlpha.400"
     colorScheme="teal"
     variant={active ? 'solid' : 'outline'}
+    p="1rem"
+    fontSize={{ md: '.88rem', lg: '1rem' }}
     {...p}
   >
     {children}
@@ -54,7 +70,7 @@ export default function Form() {
   const transition = {
     ease: 'easeInOut',
     duration: 0.35,
-    height: { duration: 0.75 },
+    height: { duration: 0.65 },
   };
   const animForm = {
     show: {
@@ -73,6 +89,7 @@ export default function Form() {
     ease: 'easeInOut',
     duration: 0.75,
     height: { duration: 0.35 },
+    width: { duration: 0 },
   };
   const animResult = {
     show: {
@@ -94,7 +111,12 @@ export default function Form() {
   const [showResult, setShowResult] = useState(false);
   const toggleResult = () => setShowResult(!showResult);
 
-  const [result, setResult] = useState({ name: '', desc: '' });
+  const [result, setResult] = useState({
+    text: '',
+    type: '',
+    desc: '',
+    prob: null,
+  });
   const handleSubmit = () => {
     const values = Object.values(formState).map((e) => e.active);
     const cfs = Object.values(formState).map((e) => e.cf);
@@ -102,13 +124,17 @@ export default function Form() {
 
     if (null == result.type)
       setResult({
-        name: `You don't have asthma`,
-        desc: '',
+        text: `You don't have asthma`,
+        type: undefined,
+        desc: 'Thank you for using this app',
+        prob: null,
       });
     else
       setResult({
-        name: `You have asthma of type: ${result.info.name}`,
+        text: `You have asthma of type: `,
+        type: result.info.name,
         desc: result.info.desc,
+        prob: result.prob,
       });
     console.log(result);
 
@@ -137,15 +163,46 @@ export default function Form() {
         boxShadow="7px 8px 10px 2px rgba(0,0,0,0.7)"
       >
         <Flex
+          flexDir="column"
           as={motion.div}
           justifyContent="center"
           alignItems="center"
+          opacity="0"
           animate={showResult ? animResult.show : animResult.hide}
         >
-          <Heading textAlign="center" width="fit-content">
-            {result.name}
+          <Heading textAlign="center" width="fit-content" pb=".5rem">
+            {result.text}
+            <br />
+            {result.type ?? undefined}
           </Heading>
           <Text>{result.desc}</Text>
+          {Array.isArray(result.prob) ? (
+            <TableContainer>
+              <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
+                <TableCaption placement="top">
+                  Our confidence for each type
+                </TableCaption>
+                <Thead>
+                  <Tr>
+                    <Th>Type</Th>
+                    <Th isNumeric>cf</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {result.prob.map((e, i) => (
+                    <Tr key={asthma[i].name}>
+                      <Td>{asthma[i].name}</Td>
+                      <Td isNumeric>{Number(e).toFixed(5)}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+                <Tfoot />
+              </Table>
+            </TableContainer>
+          ) : undefined}
+          <LinkButton href="/" mt="1.5rem">
+            Back to Home
+          </LinkButton>
         </Flex>
         <Box
           as={motion.div}
