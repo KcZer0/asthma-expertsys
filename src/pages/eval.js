@@ -10,6 +10,7 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
+
 import {
   Table,
   Thead,
@@ -24,6 +25,7 @@ import {
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import HeadTitle from '@/components/HeadTitle';
 import LinkButton from '@/components/LinkButton';
 
 import asthma from '@/data/asthma-desc';
@@ -153,6 +155,7 @@ export default function Form() {
       bgSize="cover"
       justifyContent={{ base: 'center', md: 'end' }}
     >
+      <HeadTitle />
       <Flex
         bgColor="white"
         mx="5vw"
