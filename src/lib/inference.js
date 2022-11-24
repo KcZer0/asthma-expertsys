@@ -1,17 +1,4 @@
-const asthma = [
-  {
-    name: 'Intermittent (P1)',
-    desc: '',
-  },
-  {
-    name: 'Mild Persistent (P2)',
-    desc: '',
-  },
-  {
-    name: 'Moderate Persistent (P3)',
-    desc: '',
-  },
-];
+import asthma from '@/data/asthma-desc';
 
 /**
  * Determine which type of asthma
