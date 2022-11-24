@@ -1,7 +1,7 @@
-import { Button, Center, Box, VStack, Link } from '@chakra-ui/react';
-
+import { Box, Center, VStack } from '@chakra-ui/react';
 import Image from 'next/image';
-import NextLink from 'next/link';
+
+import LinkButton from '@/components/LinkButton';
 
 export default function Home() {
   return (
@@ -10,20 +10,9 @@ export default function Home() {
         <Box width="20rem" height="20rem" position="relative">
           <Image src="/images/logo.png" alt="Logo" fill />
         </Box>
-        <NextLink href="/eval" legacyBehavior passHref>
-          <Button
-            as={Link}
-            colorScheme="teal"
-            px="5rem"
-            sx={{
-              ':hover': {
-                textDecorationLine: 'none',
-              },
-            }}
-          >
-            Get Started
-          </Button>
-        </NextLink>
+        <LinkButton href="/eval" px="4rem">
+          Get Started
+        </LinkButton>
       </VStack>
     </Center>
   );
