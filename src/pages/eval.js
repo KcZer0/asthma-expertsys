@@ -147,6 +147,21 @@ export default function Form() {
     setTimeout(toggleResult, 1600);
   };
 
+  const tableNotes = (num) => {
+    const adjectives = [
+      'Unlikely',
+      'Might',
+      'Possibly',
+      'Likely',
+      'Definitely',
+    ];
+    let n = parseInt(Number(num) / 0.2);
+    if (n > 4) n = 4;
+
+    const adj = adjectives[n];
+    return `You "${adj}" have the asthma type`;
+  };
+
   return (
     <Flex
       w="100%"
@@ -180,19 +195,30 @@ export default function Form() {
             <br />
             {result.type ?? undefined}
           </Heading>
-          <Text mt="1rem">{result.description ?? undefined}</Text>
-          <br></br>
-          <Text>{result.desc}</Text>
+          <br />
+          <Stack
+            direction="column"
+            spacing={4}
+            px="5vw"
+            textAlign="justify"
+            pb=".5rem"
+          >
+            {Array.isArray(result.desc)
+              ? result.desc.map((e, i) => <Text key={`desc-${i}`}>{e}</Text>)
+              : undefined}
+          </Stack>
           {Array.isArray(result.prob) ? (
             <TableContainer>
               <Table variant="simple" size={{ base: 'sm', md: 'md' }}>
-                <TableCaption placement="top">
-                  Our confidence for each type
+                <TableCaption placement="top">Our calculation</TableCaption>
+                <TableCaption placement="bottom">
+                  (result: highest type, where cf &gt; 0.85)
                 </TableCaption>
                 <Thead>
                   <Tr>
                     <Th>Type</Th>
                     <Th isNumeric>cf</Th>
+                    <Th>Notes</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -200,6 +226,7 @@ export default function Form() {
                     <Tr key={asthma[i].name}>
                       <Td>{asthma[i].name}</Td>
                       <Td isNumeric>{Number(e).toFixed(5)}</Td>
+                      <Td>{tableNotes(e)}</Td>
                     </Tr>
                   ))}
                 </Tbody>

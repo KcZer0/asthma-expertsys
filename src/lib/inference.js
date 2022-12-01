@@ -1,5 +1,8 @@
 import asthma from '@/data/asthma-desc';
 
+// Threshold
+const thresh = 0.85;
+
 /**
  * Determine which type of asthma
  *
@@ -62,9 +65,6 @@ const asthmaType = (input, cfs) => {
       P[2] = comb(P[2], cfs[i][2]);
     }
   }
-
-  // Threshold
-  const thresh = 0.85;
 
   // if P > thresh, it's the probable type
   let type = null;
